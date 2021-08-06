@@ -2,6 +2,7 @@ package com.idbmobile.practica.model;
 
 import java.time.LocalDate;
 
+import com.idbmobile.practica.enums.Result;
 import com.idbmobile.practica.enums.TestType;
 
 public class PCRTest extends Test {

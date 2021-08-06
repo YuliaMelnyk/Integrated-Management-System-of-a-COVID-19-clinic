@@ -1,4 +1,4 @@
-package com.idbmobile.practica.model;
+package com.idbmobile.practica.enums;
 
 public enum Result {
 
