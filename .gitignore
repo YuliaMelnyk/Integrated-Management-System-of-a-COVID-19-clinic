@@ -1,0 +1,8 @@
+practica/*
+!practica/src
+**/.settings
+**/target
+**/.classpath
+**/.project
+!/practica/pom.xml
+
