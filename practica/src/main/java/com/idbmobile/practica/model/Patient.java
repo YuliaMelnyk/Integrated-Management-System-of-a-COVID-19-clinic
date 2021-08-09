@@ -16,9 +16,11 @@ public class Patient extends User {
 
 	private Vaccine vaccine;
 
-	public Patient(int id, String name, String surname, List<Test> tests, Vaccine vaccine, LocalDate firstDose,
+	private LocalDate confinedDate;
+
+	public Patient(String dni, String name, String surname, List<Test> tests, Vaccine vaccine, LocalDate firstDose,
 			Type type) {
-		super(id, name, surname, type);
+		super(dni, name, surname, type);
 		this.tests = tests;
 		this.vaccine = vaccine;
 		type = Type.PATIENT;
@@ -71,16 +73,28 @@ public class Patient extends User {
 	}
 
 	public void setVaccine(Vaccine vaccine) {
-		// check what if vaccine and set the date of second dose
+		// check witch vaccine and set the date of second dose
 		if (vaccine.equals(vaccine.PFIZER) || vaccine.equals(vaccine.MODERNA)) {
 			this.secondDose = firstDose.plusDays(21);
 		} else if (vaccine.equals(vaccine.JONHNSONANDJONHNSON)) {
 			secondDose = null;
-		} else if (vaccine.equals(Vaccine.NONE)) {
-			this.vaccine = vaccine;
-			this.firstDose = null;
-			this.secondDose = null;
 		}
+	}
+
+	public LocalDate getConfinedDate() {
+		return confinedDate;
+	}
+
+	public void setConfinedDate(LocalDate confinedDate) {
+		this.confinedDate = confinedDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Patient [DNI=" + getDni() + ", name=" + getName() + ", surname=" + getSurname() + ", firstDose="
+				+ firstDose + ", secondDose=" + secondDose + ", tests=" + tests + ", vaccine=" + vaccine
+				+ ", confinedDate=" + confinedDate + ", isAlta=" + getIsAlta() + ", isBaja=" + getIsBaja() + ", type="
+				+ getType() + "]";
 	}
 
 }

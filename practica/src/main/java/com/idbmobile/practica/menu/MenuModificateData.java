@@ -1,9 +1,10 @@
 package com.idbmobile.practica.menu;
 
+import static com.idbmobile.practica.main.Main.userHashMap;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
-import com.idbmobile.practica.main.Main;
 import com.idbmobile.practica.model.User;
 
 // Menu to manage the data of Nurses and Technical
@@ -20,8 +21,8 @@ public class MenuModificateData {
 
 		int id = scanner.nextInt();
 
-		if (Main.userHashMap.containsKey(id)) {
-			final User user = Main.userHashMap.get(id);
+		if (userHashMap.containsKey(id)) {
+			final User user = userHashMap.get(id);
 			hashMap.put(1, () -> setAlta(user));
 			hashMap.put(2, () -> setBaja(user));
 			hashMap.put(3, () -> setName(user, scanner));

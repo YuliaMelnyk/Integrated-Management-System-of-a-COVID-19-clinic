@@ -1,8 +1,9 @@
 package com.idbmobile.practica.menu;
 
+import static com.idbmobile.practica.main.Main.userHashMap;
+
 import java.util.Scanner;
 
-import com.idbmobile.practica.main.Main;
 import com.idbmobile.practica.model.Administator;
 import com.idbmobile.practica.model.Employee;
 import com.idbmobile.practica.model.Nurse;
@@ -17,14 +18,14 @@ public class Menu {
 		System.out.println("Welcome to the Integrated Management System of a COVID-19 clinic ");
 		System.out.println("To start using the system you need to login in ");
 		System.out.println("Please enter your id");
-		int id = sc.nextInt();
+		String id = sc.next();
 		System.out.println("Please enter your password");
 		String password = sc.next();
 
 		// checks if id and password entered correctly
 		// if not return to menu again
-		if (Main.userHashMap.containsKey(id)) {
-			Employee employee = (Employee) Main.userHashMap.get(id);
+		if (userHashMap.containsKey(id)) {
+			Employee employee = (Employee) userHashMap.get(id);
 			if (employee.getPassword().equals(password)) {
 				System.out.println("Access granted");
 				createMainMenu(employee);
@@ -38,18 +39,14 @@ public class Menu {
 		}
 	}
 
+	// depends of introduced DNI - open menu for concrete employee
 	public static void createMainMenu(Employee employee) {
 		if (employee instanceof Administator) {
 			MenuAdmin.createMenuAdmin(sc);
 		} else if (employee instanceof Nurse) {
-			// MenuNurse.createMenuNurse(sc);
+			MenuNurse.createMenuNurse(sc, employee);
 		} else if (employee instanceof Technical) {
-			menuTechnical();
+			MenuTechnical.createMenuTechnical(sc, employee);
 		}
 	}
-
-	public static void menuTechnical() {
-
-	}
-
 }

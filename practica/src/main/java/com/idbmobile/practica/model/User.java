@@ -4,7 +4,7 @@ import com.idbmobile.practica.enums.Type;
 
 public abstract class User {
 
-	private Integer id;
+	private String dni;
 	private String name;
 	private String surname;
 
@@ -14,9 +14,9 @@ public abstract class User {
 
 	private Type type;
 
-	public User(int id, String name, String surname, Type type) {
+	public User(String dni, String name, String surname, Type type) {
 		super();
-		this.id = id;
+		this.dni = dni;
 		this.name = name;
 		this.surname = surname;
 		this.isAlta = true;
@@ -24,12 +24,12 @@ public abstract class User {
 		this.type = type;
 	}
 
-	public int getId() {
-		return id;
+	public String getDni() {
+		return dni;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getName() {
@@ -74,7 +74,7 @@ public abstract class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", isAlta=" + isAlta + ", isBaja="
+		return "User [dni=" + dni + ", name=" + name + ", surname=" + surname + ", isAlta=" + isAlta + ", isBaja="
 				+ isBaja + ", type=" + type + "]";
 	}
 

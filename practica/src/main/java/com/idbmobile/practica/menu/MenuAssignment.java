@@ -1,5 +1,7 @@
 package com.idbmobile.practica.menu;
 
+import static com.idbmobile.practica.main.Main.userHashMap;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,7 +14,6 @@ import java.util.stream.Collectors;
 import com.idbmobile.practica.enums.TestType;
 import com.idbmobile.practica.enums.Type;
 import com.idbmobile.practica.enums.Vaccine;
-import com.idbmobile.practica.main.Main;
 import com.idbmobile.practica.model.AntigenTest;
 import com.idbmobile.practica.model.Employee;
 import com.idbmobile.practica.model.Nurse;
@@ -61,14 +62,14 @@ public class MenuAssignment {
 		System.out.println("Enter id of patient");
 		idPatient = scanner.nextInt();
 
-		Patient patient = (Patient) Main.userHashMap.get(idPatient);
+		Patient patient = (Patient) userHashMap.get(idPatient);
 
 		patients.add(patient);
 
 		System.out.println("Enter id of Nurse");
 		int idNurse = scanner.nextInt();
 
-		Nurse nurse = (Nurse) Main.userHashMap.get(idNurse);
+		Nurse nurse = (Nurse) userHashMap.get(idNurse);
 
 		nurse.setPatients(patients);
 
@@ -94,7 +95,7 @@ public class MenuAssignment {
 		idPatient = scanner.nextInt();
 
 		try {
-			patient = (Patient) Main.userHashMap.get(idPatient);
+			patient = (Patient) userHashMap.get(idPatient);
 		} catch (Exception e) {
 			System.out.println("Patient id isnt correct. Try again");
 			assignmentTest(scanner);
@@ -106,7 +107,7 @@ public class MenuAssignment {
 			System.out.println("Enter N id of Technical");
 			int idTechnical = scanner.nextInt();
 
-			Employee employee = (Employee) Main.userHashMap.get(idTechnical);
+			Employee employee = (Employee) userHashMap.get(idTechnical);
 			if (employee.getType().equals(Type.TECHNICAL) || employee.getType().equals(Type.NURSE)) {
 
 				hashMap.put(1, () -> setTest(scanner, employee, patient, TestType.ANTIGEN));
@@ -140,7 +141,7 @@ public class MenuAssignment {
 		}
 		LocalDate testDate = setTestDay(scanner);
 
-		boolean isLimit = checkLimitTestForWeekTech(testDate, employee);
+		boolean isLimit = checkLimitTestForWeek(testDate, employee);
 
 		if (isLimit) {
 			System.out.println("You cant assigned test for this employee, he/she get over his/her weekly limit");
@@ -170,7 +171,7 @@ public class MenuAssignment {
 	}
 
 	// checks limit of weekly tests for Technical (max 4) and Nurse (max 5)
-	public static boolean checkLimitTestForWeekTech(LocalDate localDate, Employee employee) {
+	public static boolean checkLimitTestForWeek(LocalDate localDate, Employee employee) {
 		LocalDate time = localDate.minusDays(7);
 
 		// get all patients assigned to this employee

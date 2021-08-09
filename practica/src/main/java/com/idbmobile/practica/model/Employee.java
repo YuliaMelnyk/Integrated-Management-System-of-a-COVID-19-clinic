@@ -10,8 +10,8 @@ public abstract class Employee extends User {
 	private List<Patient> patients;
 	private int limit;
 
-	public Employee(int id, String name, String surname, String password, Type type) {
-		super(id, name, surname, type);
+	public Employee(String dni, String name, String surname, String password, Type type) {
+		super(dni, name, surname, type);
 		this.password = password;
 		this.limit = 0;
 

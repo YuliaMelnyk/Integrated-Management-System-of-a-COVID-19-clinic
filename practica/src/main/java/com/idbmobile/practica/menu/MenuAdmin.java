@@ -1,7 +1,12 @@
 package com.idbmobile.practica.menu;
 
+import static com.idbmobile.practica.main.Main.userHashMap;
+
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+import com.idbmobile.practica.model.User;
 
 public class MenuAdmin {
 
@@ -23,8 +28,8 @@ public class MenuAdmin {
 		System.out.println("______________________________________________________________________________");
 		System.out.println("3. Data visualization of all the people registered in the system");
 		System.out.println("______________________________________________________________________________");
-		System.out.println("4. Viewing patients assigned to each nurse / technician for testing\r\n"
-				+ "diagnostics and vaccinations");
+		System.out.println(
+				"4. Viewing patients assigned to each nurse/technician for testing diagnostics and vaccinations");
 		System.out.println("______________________________________________________________________________");
 		System.out.println("5. Viewing the list of confined patients and the dates of lockdown");
 		System.out.println("______________________________________________________________________________");
@@ -32,8 +37,8 @@ public class MenuAdmin {
 		System.out.println("______________________________________________________________________________");
 		System.out.println("7. Update of the vaccine stock");
 		System.out.println("______________________________________________________________________________");
-		System.out.println("8. Visualization of the tentative vaccine planning, based on the\r\n"
-				+ "patients registered at a certain time");
+		System.out.println(
+				"8. Visualization of the tentative vaccine planning, based on the patients registered at a certain time");
 		System.out.println("______________________________________________________________________________");
 
 		hashMap.get(scanner.nextInt()).run();
@@ -67,8 +72,10 @@ public class MenuAdmin {
 	}
 
 	public static void viewAllUsers(Scanner scanner) {
-
-		// TODO
+		for (Map.Entry<String, User> entry : userHashMap.entrySet()) {
+			User user = entry.getValue();
+			System.out.println(user.toString());
+		}
 
 	}
 

@@ -6,24 +6,27 @@ import com.idbmobile.practica.enums.Type;
 
 public class Nurse extends Employee {
 
-	private List<Patient> patient;
+	private List<Patient> patients;
 
-	public Nurse(int id, String name, String surname, String password, Type type) {
-		super(id, name, surname, password, type);
+	public Nurse(String dni, String name, String surname, String password, Type type) {
+		super(dni, name, surname, password, type);
 		type = Type.NURSE;
 	}
 
-	public List<Patient> getPatient() {
-		return patient;
+	@Override
+	public List<Patient> getPatients() {
+		return patients;
 	}
 
-	public void setPatient(List<Patient> patient) {
-		this.patient = patient;
+	public void setPatient(List<Patient> patients) {
+		this.patients = patients;
 	}
 
 	@Override
 	public String toString() {
-		return "Nurse [patient=" + patient + "]";
+		return "Nurse [ DNI=" + getDni() + ", Name=" + getName() + ", Surname=" + getSurname() + ", Patients="
+				+ patients + ", Limit=" + getLimit() + ", IsAlta=" + getIsAlta() + ", IsBaja=" + getIsBaja() + ", Type="
+				+ getType() + "]";
 	}
 
 }

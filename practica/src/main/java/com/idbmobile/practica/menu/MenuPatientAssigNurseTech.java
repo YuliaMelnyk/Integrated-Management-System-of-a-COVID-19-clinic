@@ -1,13 +1,14 @@
 package com.idbmobile.practica.menu;
 
+import static com.idbmobile.practica.main.Main.userHashMap;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.idbmobile.practica.enums.Type;
-import com.idbmobile.practica.main.Main;
 import com.idbmobile.practica.model.Nurse;
+import com.idbmobile.practica.model.Technical;
 import com.idbmobile.practica.model.User;
 
 public class MenuPatientAssigNurseTech {
@@ -17,26 +18,45 @@ public class MenuPatientAssigNurseTech {
 		List<Nurse> nurses = new ArrayList<Nurse>();
 		System.out.println("Assigned Nurses");
 
-		HashMap<Integer, User> hashMapNurses = Main.createNurses();
-
-		// search in all users type Nurse and search for assigned patients
-		for (Map.Entry<Integer, User> entry : Main.userHashMap.entrySet()) {
-
+		// search in all Nurses and search for assigned patients
+		for (Map.Entry<String, User> entry : userHashMap.entrySet()) {
 			User user = entry.getValue();
-
 			if (user.getType().equals(Type.NURSE)) {
-				Nurse nurse = (Nurse) user;
-				if (nurse.getPatient() != null) {
-					nurses.add(nurse);
+				if (((Nurse) user).getPatients() != null) {
+					nurses.add((Nurse) user);
 				}
-
 			}
 		}
 
-		for (Nurse nurse : nurses) {
-			System.out.println(nurse.toString());
+		// print them
+		if (nurses != null) {
+			for (Nurse nurse : nurses) {
+				System.out.println(nurse.toString());
+			}
+		} else {
+			System.out.println("There no nurses assigned");
 		}
 
-	}
+		List<Technical> technicals = new ArrayList<Technical>();
+		System.out.println("Assigned Technicals");
 
+		// search in all Technicals and search for assigned patients
+		for (Map.Entry<String, User> entry : userHashMap.entrySet()) {
+			User user = entry.getValue();
+			if (user.getType().equals(Type.TECHNICAL)) {
+				if (((Technical) user).getPatients() != null) {
+					technicals.add((Technical) user);
+				}
+			}
+		}
+
+		// print them
+		if (technicals != null) {
+			for (Technical technical : technicals) {
+				System.out.println(technical.toString());
+			}
+		} else {
+			System.out.println("There no technicals assigned");
+		}
+	}
 }
